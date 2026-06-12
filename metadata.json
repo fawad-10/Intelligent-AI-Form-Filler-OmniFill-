@@ -1,0 +1,6 @@
+{
+  "name": "AI Form-Filler Chrome Extension",
+  "description": "An interactive full-stack simulator, playground, and codebase exporter for an Intelligent Generative AI Form-Filler Chrome Extension.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
