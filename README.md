@@ -4,7 +4,7 @@
 
 This contains everything you need to run your app locally.
 
-View the app in AI Studio: https://ai.studio/apps/b8049c3f-f7c8-4269-aba4-16539ac24e14
+View the app: https://ai-form-filler-chrome-extension-598579038076.asia-southeast1.run.app
 
 ## Run Locally
 
