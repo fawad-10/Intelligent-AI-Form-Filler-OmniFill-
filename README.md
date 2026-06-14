@@ -39,3 +39,6 @@ View the app: https://ai-form-filler-chrome-extension-598579038076.asia-southeas
 - `popup.js` send fields to Gemini API.
 - AI return JSON.
 - `content.js` inject values into inputs.
+
+# Testing Report
+Go to [Testing-Report.md](https://github.com/fawad-10/Intelligent-AI-Form-Filler-OmniFill-/blob/master/Testing-Report.md)
