@@ -3,7 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    <title>OmniFIll - Ai Form Filler</title>
+    <script>
+      // Gracefully intercept and suppress third-party browser extension errors
+      // attempting to write to window.fetch inside restricted iframe sandboxes.
+      window.addEventListener('error', function(event) {
+        if (event.message && (
+          event.message.includes('property fetch') || 
+          event.message.includes('set property fetch') ||
+          event.message.includes('only a getter')
+        )) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          console.warn('🛡️ Intercepted external fetch overwrite exception:', event.message);
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <div id="root"></div>

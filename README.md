@@ -1,11 +1,12 @@
-<img width="3500" height="2198" alt="ai-form-filler-chrome-extension-598579038076 asia-southeast1 run app_" src="https://github.com/user-attachments/assets/9101088e-3aff-4aa5-9960-5fc6054addaf" />
-
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
 # Run and deploy your AI Studio app
 
 This contains everything you need to run your app locally.
 
-View the APP Deployed on Google Cloud: https://ai-form-filler-chrome-extension-598579038076.asia-southeast1.run.app/
+View your app in AI Studio: https://ai.studio/apps/b8049c3f-f7c8-4269-aba4-16539ac24e14
 
 ## Run Locally
 

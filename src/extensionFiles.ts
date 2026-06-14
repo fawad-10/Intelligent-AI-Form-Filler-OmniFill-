@@ -305,6 +305,9 @@ function scanPageFormFields() {
     const uid = el.id || el.name || ('scanned_field_' + index);
     const label = findLabelForElement(el) || el.getAttribute('aria-label') || el.title || "";
     
+    // Tag element so we can reliably find it even without native id/name attributes
+    el.setAttribute('data-autofill-id', uid);
+
     // Check options if dropdown/select
     let options = [];
     if (el.tagName === 'SELECT') {
@@ -341,13 +344,38 @@ function scanPageFormFields() {
   return results;
 }
 
+// Set values using native descriptors to bypass SPA state binders (React, Vue, Angular)
+function setElementValueNative(element, value) {
+  try {
+    const parent = Object.getPrototypeOf(element);
+    let setter = Object.getOwnPropertyDescriptor(element, 'value')?.set;
+    if (!setter && parent) {
+      setter = Object.getOwnPropertyDescriptor(parent, 'value')?.set;
+    }
+    const grandparent = parent ? Object.getPrototypeOf(parent) : null;
+    if (!setter && grandparent) {
+      setter = Object.getOwnPropertyDescriptor(grandparent, 'value')?.set;
+    }
+    
+    if (setter) {
+      setter.call(element, value);
+    } else {
+      element.value = value;
+    }
+  } catch (e) {
+    element.value = value;
+  }
+}
+
 // Real SPA framework-compatible event injection loop
 function injectMappedValues(mappings) {
   if (!mappings) return false;
 
   mappings.forEach((match) => {
-    // Find matching DOM element by id or name
-    let element = document.getElementById(match.fieldId) || document.querySelector('[name="' + match.fieldId + '"]');
+    // Find matching DOM element by data-autofill-id, id or name
+    let element = document.querySelector('[data-autofill-id="' + match.fieldId + '"]') ||
+                  document.getElementById(match.fieldId) || 
+                  document.querySelector('[name="' + match.fieldId + '"]');
     
     if (!element) {
       // fallback matching by class/name substrings
@@ -372,8 +400,8 @@ function injectMappedValues(mappings) {
       return;
     }
 
-    // Standard elements filling
-    element.value = match.value;
+    // Standard elements filling using our native setter bypass
+    setElementValueNative(element, match.value);
     triggerDomEvents(element);
   });
 
