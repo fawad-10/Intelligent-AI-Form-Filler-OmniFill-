@@ -1,4 +1,3 @@
-Me stop being blunt. Me put on fancy suit. Me use "Corporate Speak."
 
 ### Testing & Quality Assurance Report
 
